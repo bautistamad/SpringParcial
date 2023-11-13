@@ -18,7 +18,7 @@ import ar.edu.ubp.das.rest.repository.TipoServicioRepository;
 
 @RestController
 @RequestMapping(
-  path="/api/servicios",
+  path="/api/sugerencias",
   produces={MediaType.APPLICATION_JSON_VALUE}
 )
 
@@ -29,7 +29,7 @@ public class TipoServicioController {
 	
  
     @PostMapping(
-        	path="/getTemasTipoServicio",
+        	path="/temas",
         	consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE}
         )
     
@@ -37,7 +37,7 @@ public class TipoServicioController {
         	return new ResponseEntity<>(repository.getTiposServicios(codTipoServicio), HttpStatus.OK);
     	}
     
-    @PutMapping(path = "/add", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @PutMapping(path = "/sugerencia", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<?> insSugerencia(@RequestBody  Sugerencia sugerencia) {
         repository.insServicio(sugerencia);
         return ResponseEntity.ok().build();
