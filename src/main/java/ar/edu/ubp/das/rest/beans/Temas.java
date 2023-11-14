@@ -1,6 +1,6 @@
 package ar.edu.ubp.das.rest.beans;
 
-public class TemasTipoServicio {
+public class Temas {
 	private String tema;
 	private String codTipoServicio;
 	private int nroTema;

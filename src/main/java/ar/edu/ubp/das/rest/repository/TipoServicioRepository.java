@@ -1,5 +1,6 @@
 package ar.edu.ubp.das.rest.repository;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.ubp.das.rest.beans.Sugerencia;
-import ar.edu.ubp.das.rest.beans.TemasTipoServicio;
+import ar.edu.ubp.das.rest.beans.Temas;
+import ar.edu.ubp.das.rest.beans.Tipos;
+import ar.edu.ubp.das.ws.jaxws.GetTiposServicios;
+import ar.edu.ubp.das.ws.jaxws.GetTiposServiciosResponse;
+
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 @SuppressWarnings("unused")
 @Repository
@@ -26,7 +33,7 @@ public class TipoServicioRepository {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<TemasTipoServicio> getTiposServicios(String codigo) {
+	public List<Temas> getTemas(String codigo) {
        	System.out.println(codigo);
 
         SqlParameterSource in = new MapSqlParameterSource()
@@ -35,11 +42,11 @@ public class TipoServicioRepository {
     	SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTpl)
     	   .withProcedureName("get_temas_tipo_servicio")
            .withSchemaName("dbo")
-       	   .returningResultSet("tipos_servicios", BeanPropertyRowMapper.newInstance(TemasTipoServicio.class));
+       	   .returningResultSet("tipos_servicios", BeanPropertyRowMapper.newInstance(Temas.class));
        	
        	Map<String, Object> out = jdbcCall.execute(in);
        	System.out.println(out);
-       	return (List<TemasTipoServicio>)out.get("tipos_servicios");
+       	return (List<Temas>)out.get("tipos_servicios");
     }
 	
 	  @Transactional
@@ -56,6 +63,28 @@ public class TipoServicioRepository {
 	        jdbcCall.execute(in);
 
 	        return data;
+	    }
+	  
+	  @SuppressWarnings("unchecked")
+		public List<Tipos> getTipos() {
+	    		        
+//	    	SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTpl)
+//	    	   .withProcedureName("get_tipos_servicios")
+//	           .withSchemaName("dbo")
+//	       	   .returningResultSet("tipos_servicios", BeanPropertyRowMapper.newInstance(Tipos.class));
+//	       	
+//	       	Map<String, Object> out = jdbcCall.execute();
+//	       	return (List<Tipos>)out.get("tipos_servicios");
+		  
+		  GetTiposServicios request = new GetTiposServicios();
+
+
+		    GetTiposServiciosResponse response = (GetTiposServiciosResponse) getWebServiceTemplate()
+		        .marshalSendAndReceive("http://localhost:8080/ws/countries", request,
+		            new SoapActionCallback(
+		                "http://spring.io/guides/gs-producing-web-service/GetCountryRequest"));
+		  
+		  
 	    }
 	
 }

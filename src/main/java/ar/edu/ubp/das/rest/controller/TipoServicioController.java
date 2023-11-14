@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.ubp.das.rest.beans.Sugerencia;
-import ar.edu.ubp.das.rest.beans.TemasTipoServicio;
+import ar.edu.ubp.das.rest.beans.Temas;
+import ar.edu.ubp.das.rest.beans.Tipos;
 import ar.edu.ubp.das.rest.repository.TipoServicioRepository;
 
 @RestController
 @RequestMapping(
-  path="/api/sugerencias",
+  path="/api",
   produces={MediaType.APPLICATION_JSON_VALUE}
 )
 
@@ -33,8 +36,8 @@ public class TipoServicioController {
         	consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE}
         )
     
-    	public ResponseEntity<List<TemasTipoServicio>>getTiposServicios(String codTipoServicio) {
-        	return new ResponseEntity<>(repository.getTiposServicios(codTipoServicio), HttpStatus.OK);
+    	public ResponseEntity<List<Temas>>getTemas(String codTipoServicio) {
+        	return new ResponseEntity<>(repository.getTemas(codTipoServicio), HttpStatus.OK);
     	}
     
     @PutMapping(path = "/sugerencia", consumes = { MediaType.APPLICATION_JSON_VALUE })
@@ -43,7 +46,16 @@ public class TipoServicioController {
         return ResponseEntity.ok().build();
     }
     
+    @GetMapping(path = "/tipos")
+    public ResponseEntity<List<Tipos>> getTipos() {
+        return new ResponseEntity<>(repository.getTipos(), HttpStatus.OK);
+    }
+    
+//    @GetMapping(path="/{nro_persona}")
+//    public ResponseEntity<List<PersonaData>> getPersona( @PathVariable("nro_persona") int nroPersona ) {
+//      return new ResponseEntity<>(repository.getPersona(nroPersona), HttpStatus.OK);
+//    }
     
     
- 
+     
 }
