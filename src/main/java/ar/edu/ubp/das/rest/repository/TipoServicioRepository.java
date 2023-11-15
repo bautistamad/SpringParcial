@@ -43,7 +43,7 @@ public class TipoServicioRepository {
     }
 	
 	  @Transactional
-	    public Sugerencia insServicio(Sugerencia data) {
+	    public Sugerencia insSugerencia(Sugerencia data) {
 	   
 	        SqlParameterSource in = new MapSqlParameterSource()
 	           .addValue("cod_tipo_servicio", data.getCodTipoServicio())
