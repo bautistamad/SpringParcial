@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="TiposServiciosWSService" targetNamespace="http://ws.das.ubp.edu.ar/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.das.ubp.edu.ar/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.das.ubp.edu.ar/" version="1.0" xmlns:tns="http://ws.das.ubp.edu.ar/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="getTiposServicios" type="tns:getTiposServicios"/>
+
+  <xs:element name="getTiposServiciosResponse" type="tns:getTiposServiciosResponse"/>
+
+  <xs:complexType name="getTiposServicios">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getTiposServiciosResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:tipoServicioBean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoServicioBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codTipoServicio" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoServicio" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getTiposServiciosResponse">
+    <wsdl:part name="parameters" element="tns:getTiposServiciosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTiposServicios">
+    <wsdl:part name="parameters" element="tns:getTiposServicios">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TiposServiciosWS">
+    <wsdl:operation name="getTiposServicios">
+      <wsdl:input name="getTiposServicios" message="tns:getTiposServicios">
+    </wsdl:input>
+      <wsdl:output name="getTiposServiciosResponse" message="tns:getTiposServiciosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TiposServiciosWSServiceSoapBinding" type="tns:TiposServiciosWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getTiposServicios">
+      <soap:operation soapAction="urn:GetTiposServicios" style="document"/>
+      <wsdl:input name="getTiposServicios">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTiposServiciosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TiposServiciosWSService">
+    <wsdl:port name="TiposServiciosWSPort" binding="tns:TiposServiciosWSServiceSoapBinding">
+      <soap:address location="http://localhost:8080/ServicioParcialWS/services/TiposServiciosWSPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
