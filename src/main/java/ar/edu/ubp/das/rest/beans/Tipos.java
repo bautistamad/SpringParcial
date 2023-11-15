@@ -1,8 +1,8 @@
 package ar.edu.ubp.das.rest.beans;
 
-public class TIpos {
+public class Tipos {
 
-	private  String tipoServicio;
+	private String tipoServicio;
 	private String codTipoServicio;
 	
 	public String getTipoServicio() {
