@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.ubp.das.rest.beans.Sugerencia;
-import ar.edu.ubp.das.rest.beans.TemasTipoServicio;
+import ar.edu.ubp.das.rest.beans.Temas;
 
 @SuppressWarnings("unused")
 @Repository
@@ -26,7 +26,7 @@ public class TipoServicioRepository {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<TemasTipoServicio> getTiposServicios(String codigo) {
+	public List<Temas> getTemas(String codigo) {
        	System.out.println(codigo);
 
         SqlParameterSource in = new MapSqlParameterSource()
@@ -35,11 +35,11 @@ public class TipoServicioRepository {
     	SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTpl)
     	   .withProcedureName("get_temas_tipo_servicio")
            .withSchemaName("dbo")
-       	   .returningResultSet("tipos_servicios", BeanPropertyRowMapper.newInstance(TemasTipoServicio.class));
+       	   .returningResultSet("tipos_servicios", BeanPropertyRowMapper.newInstance(Temas.class));
        	
        	Map<String, Object> out = jdbcCall.execute(in);
        	System.out.println(out);
-       	return (List<TemasTipoServicio>)out.get("tipos_servicios");
+       	return (List<Temas>)out.get("tipos_servicios");
     }
 	
 	  @Transactional

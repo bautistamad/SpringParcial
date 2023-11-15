@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.ubp.das.rest.beans.Sugerencia;
-import ar.edu.ubp.das.rest.beans.TemasTipoServicio;
+import ar.edu.ubp.das.rest.beans.Temas;
 import ar.edu.ubp.das.rest.repository.TipoServicioRepository;
 
 @RestController
@@ -33,8 +33,8 @@ public class TipoServicioController {
         	consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE}
         )
     
-    	public ResponseEntity<List<TemasTipoServicio>>getTiposServicios(String codTipoServicio) {
-        	return new ResponseEntity<>(repository.getTiposServicios(codTipoServicio), HttpStatus.OK);
+    	public ResponseEntity<List<Temas>>getTemas(String codTipoServicio) {
+        	return new ResponseEntity<>(repository.getTemas(codTipoServicio), HttpStatus.OK);
     	}
     
     @PutMapping(path = "/sugerencia", consumes = { MediaType.APPLICATION_JSON_VALUE })
