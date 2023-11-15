@@ -42,20 +42,20 @@ public class TipoServicioRepository {
        	return (List<Temas>)out.get("tipos_servicios");
     }
 	
-	  @Transactional
-	    public Sugerencia insSugerencia(Sugerencia data) {
-	   
-	        SqlParameterSource in = new MapSqlParameterSource()
-	           .addValue("cod_tipo_servicio", data.getCodTipoServicio())
-	           .addValue("nro_tema", data.getNumeroTema())
-	           .addValue("sugerencia", data.getSugerencia());
-	           	
-	        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTpl)
-	           .withProcedureName("ins_sugerencia")
-	           .withSchemaName("dbo");
-	        jdbcCall.execute(in);
+	@Transactional
+    public Sugerencia insSugerencia(Sugerencia data) {
+   
+        SqlParameterSource in = new MapSqlParameterSource()
+           .addValue("cod_tipo_servicio", data.getCodTipoServicio())
+           .addValue("nro_tema", data.getNumeroTema())
+           .addValue("sugerencia", data.getSugerencia());
+           	
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTpl)
+           .withProcedureName("ins_sugerencia")
+           .withSchemaName("dbo");
+        jdbcCall.execute(in);
 
-	        return data;
-	    }
+        return data;
+    }
 	
 }
