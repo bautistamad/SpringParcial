@@ -50,12 +50,9 @@ public class TipoServicioController {
 
     @GetMapping("/tipos")
     public List<Tipos> getTipos() {
-    	System.out.println("ENTRA CONTROLLER");
-    	
+     	
     	List<Tipos> temp = clienteSOAP.getTiposServicios();
-    	
-    	System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA" + temp);
-    	
+     	
     	return temp;
     }
     

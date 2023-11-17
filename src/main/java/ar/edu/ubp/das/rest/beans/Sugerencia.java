@@ -4,6 +4,21 @@ public class Sugerencia {
 	private String codTipoServicio;
 	private int numeroTema;
 	private String sugerencia;
+	private String email;
+	private String tema;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTema() {
+		return tema;
+	}
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
 	
 	public int getNumeroTema() {
 		return numeroTema;

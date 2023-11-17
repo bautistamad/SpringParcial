@@ -48,7 +48,10 @@ public class TipoServicioRepository {
         SqlParameterSource in = new MapSqlParameterSource()
            .addValue("cod_tipo_servicio", data.getCodTipoServicio())
            .addValue("nro_tema", data.getNumeroTema())
-           .addValue("sugerencia", data.getSugerencia());
+           .addValue("sugerencia", data.getSugerencia())
+	        .addValue("email", data.getEmail())
+	        .addValue("tema", data.getTema());
+        
            	
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTpl)
            .withProcedureName("ins_sugerencia")
