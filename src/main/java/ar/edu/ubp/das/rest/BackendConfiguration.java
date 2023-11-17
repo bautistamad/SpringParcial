@@ -16,7 +16,7 @@ public class BackendConfiguration {
 	    public FilterRegistrationBean<CorsFilter> corsFilter() {
 	        CorsConfiguration config = new CorsConfiguration();
 	        config.setAllowCredentials(true); 
-	        config.addAllowedOriginPattern("http://localhost:4200");
+	        config.addAllowedOriginPattern("*");
 	        config.setAllowedMethods(Arrays.asList("POST", "OPTIONS", "GET", "DELETE", "PUT"));
 	        config.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
 
