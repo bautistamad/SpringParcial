@@ -35,7 +35,7 @@ public class TipoServicioController {
 	 
     @PostMapping(
     	path="/temas",
-    	consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+    	consumes={MediaType.MULTIPART_FORM_DATA_VALUE}
     )
 	public ResponseEntity<List<Temas>>getTemas(String codTipoServicio) {
     	return new ResponseEntity<>(repository.getTemas(codTipoServicio), HttpStatus.OK);
